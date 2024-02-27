@@ -1,0 +1,165 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
+	
+	<title>Sign in - Progressus Bootstrap template</title>
+
+	<link rel="shortcut icon" href="{% static 'assets/images/gt_favicon.png' %}">
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap-theme.css' %}" media="screen" >
+	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+
+	<!--[if lt IE 9]>
+	<script src="{% static 'assets/js/html5shiv.js' %}"></script>
+	<script src="{% static 'assets/js/respond.min.js' %}"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'assets/images/logo.png' %}" alt="Connexion"></a>
+			</div>
+			 <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="active"><a href="{% url 'index' %}">Accueil</a></li>
+                    <li><a href="{% url 'annonce' %}">Annonces</a></li>
+                    <li><a href="{% url 'about' %}">À Propos</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a class="btn" href="{% url 'new_annonce' %}">Créer annonce</a></li>
+                    <li><a class="btn" href="{% url 'authentification' %}">Connexion / Inscription</a></li>
+                </ul>
+            </div>
+		</div>
+	</div> 
+
+	<header id="head" class="secondary"></header>
+
+	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="{% url 'index' %}">Home</a></li>
+			<li class="active">User access</li>
+		</ol>
+
+		<div class="row">
+			<article class="col-xs-12 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Sign in</h1>
+				</header>
+				
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h3 class="thin text-center">Sign in to your account</h3>
+							<p class="text-center text-muted">Sign in using your username/email and password.</p>
+							<hr>
+							
+							<form method="post">
+    {% csrf_token %}
+    <div class="top-margin">
+        <label>Username<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" name="username_email" required>
+    </div>
+    <div class="top-margin">
+        <label>Password <span class="text-danger">*</span></label>
+        <input type="password" class="form-control" name="password" required>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <b><a href="{% url 'signup' %}">SignUp</a></b>
+        </div>
+        <div class="col-lg-4 text-right">
+            <button class="btn btn-action" type="submit">Sign in</button>
+        </div>
+    </div>
+</form>
+
+						</div>
+					</div>
+
+				</div>
+				
+			</article>
+		</div>
+	</div>
+
+	 <footer id="footer" class="top-space">
+    <div class="footer1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 widget">
+                    <h3 class="widget-title">Contact</h3>
+                    <div class="widget-body">
+                        {% for info in info %}
+                        <p>{{ info.number }}<br>
+                            <a href="mailto:#">{{ info.mail }}</a><br>
+                            <br>
+                            {{ info.adresse }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-md-3 widget">
+                    <h3 class="widget-title">Suivez-nous</h3>
+                    <div class="widget-body">
+                        <p class="follow-me-icons">
+                            <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                            <a href="#"><i class="fa fa-dribbble fa-2x"></i></a>
+                            <a href="#"><i class="fa fa-github fa-2x"></i></a>
+                            <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <p class="simplenav">
+                            <a href="{% url 'index' %}">Accueil</a> |
+                            <a href="{% url 'about' %}">À Propos</a> |
+                            <a href="{% url 'contact' %}">Contact</a> |
+                            <b><a href="{% url 'authentification' %}">Inscription</a></b>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <p class="text-right">
+                            Copyright &copy; 2024, Modeste Junior. Conçu par <a href="http://gettemplate.com/" rel="designer">gettemplate</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+</footer>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="{% static 'assets/js/headroom.min.js' %}"></script>
+	<script src="{% static 'assets/js/jQuery.headroom.min.js' %}"></script>
+	<script src="{% static 'assets/js/template.js' %}"></script>
+</body>
+</html>
